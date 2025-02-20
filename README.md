@@ -185,6 +185,53 @@ FROM hourly_sale
 GROUP BY shift
 ```
 
+11. **Write an SQL query to find the average sale amount for each category**:
+```sql
+SELECT category,
+       AVG(total_sale) AS average_sale
+FROM retail_sales
+GROUP BY category;
+```
+
+12. **Add a condition to the query to include only categories with more than 1 order**:
+```sql
+SELECT category,
+       SUM(total_sale) AS net_sale,
+       COUNT(*) AS total_orders
+FROM retail_sales
+GROUP BY category
+HAVING COUNT(*) > 1;
+```
+
+13. **Write a query to calculate the total sales for each month**:
+```sql
+SELECT TO_CHAR(sale_date, 'YYYY-MM') AS sale_month,
+       SUM(total_sale) AS total_sales
+FROM retail_sales
+GROUP BY TO_CHAR(sale_date, 'YYYY-MM')
+ORDER BY sale_month;
+```
+
+14. **Write a query to find the category with the highest total sales**:
+```sql
+SELECT category,
+       SUM(total_sale) AS total_sales
+FROM retail_sales
+GROUP BY category
+ORDER BY total_sales DESC
+LIMIT 1;
+```
+
+15. **Write a query to find the category with the highest total sales**:
+```sql
+SELECT category,
+       SUM(total_sale) AS total_sales
+FROM retail_sales
+GROUP BY category
+ORDER BY total_sales DESC
+LIMIT 1;
+```
+
 ## Findings
 
 - **Customer Demographics**: The dataset includes customers from various age groups, with sales distributed across different categories such as Clothing and Beauty.
