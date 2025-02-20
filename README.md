@@ -222,14 +222,23 @@ ORDER BY total_sales DESC
 LIMIT 1;
 ```
 
-15. **Write a query to find the category with the highest total sales**:
+15. **Find the month with the highest total sales**:
 ```sql
-SELECT category,
+SELECT TO_CHAR(sale_date, 'YYYY-MM') AS sale_month,
        SUM(total_sale) AS total_sales
 FROM retail_sales
-GROUP BY category
+GROUP BY TO_CHAR(sale_date, 'YYYY-MM')
 ORDER BY total_sales DESC
 LIMIT 1;
+```
+
+16. **Calculate the total number of orders for each month**:
+```sql
+SELECT TO_CHAR(sale_date, 'YYYY-MM') AS sale_month,
+       COUNT(*) AS total_orders
+FROM retail_sales
+GROUP BY TO_CHAR(sale_date, 'YYYY-MM')
+ORDER BY sale_month;
 ```
 
 ## Findings
